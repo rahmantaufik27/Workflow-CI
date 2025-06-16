@@ -1,7 +1,6 @@
 import os
 import warnings
 import sys
-from dotenv import load_dotenv
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -17,7 +16,6 @@ logging.basicConfig(filename='app.log', level=logging.DEBUG, format='%(asctime)s
 logger = logging.getLogger(__name__)
 
 warnings.filterwarnings("ignore")
-load_dotenv()
 
 def run_rf_model_mlflow(df):
     # # set dagshub
