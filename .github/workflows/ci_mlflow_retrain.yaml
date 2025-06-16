@@ -56,7 +56,6 @@ jobs:
       - name: Build Docker Model
         run: |
           python -m mlflow models build-docker --model-uri "runs:/${{ env.MLFLOW_RUN_ID }}/model" --name attrition-model
-          docker tag attrition-model ${{ secrets.DOCKER_USERNAME }}/attrition-model:latest
 
       - name: Push Docker Image
         run: |
