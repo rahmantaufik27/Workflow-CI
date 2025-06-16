@@ -20,11 +20,11 @@ warnings.filterwarnings("ignore")
 load_dotenv()
 
 def run_rf_model_mlflow(df):
-    # set dagshub
-    uri_dagshub = "https://dagshub.com/rahmantaufik27/mlflow-sml-rtaufik27.mlflow"
-    mlflow.set_tracking_uri(uri_dagshub)
-    os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv('USERNAME')
-    os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv('TOKEN')
+    # # set dagshub
+    # uri_dagshub = "https://dagshub.com/rahmantaufik27/mlflow-sml-rtaufik27.mlflow"
+    # mlflow.set_tracking_uri(uri_dagshub)
+    # os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv('USERNAME')
+    # os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv('TOKEN')
 
     # set mlflow
     experiment_name = "attrition_prediction"
@@ -100,7 +100,9 @@ def run_rf_model_mlflow(df):
 
 if __name__ == "__main__":
     # load dataset
-    dataset = "employee_preprocessing.csv"
+    # dataset = "employee_preprocessing.csv"
+    current_script_directory = os.path.dirname(os.path.abspath(__file__))
+    dataset_path = os.path.join(current_script_directory, 'employee_preprocessing.csv')
     df = pd.read_csv(dataset)
     # proses tuning model with mlflow and dagshub
     run_rf_model_mlflow(df)
