@@ -101,6 +101,6 @@ if __name__ == "__main__":
     # dataset = "employee_preprocessing.csv"
     current_script_directory = os.path.dirname(os.path.abspath(__file__))
     dataset_path = os.path.join(current_script_directory, 'employee_preprocessing.csv')
-    df = pd.read_csv(dataset)
+    df = pd.read_csv(dataset_path)
     # proses tuning model with mlflow and dagshub
     run_rf_model_mlflow(df)
