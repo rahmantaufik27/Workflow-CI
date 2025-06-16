@@ -47,7 +47,7 @@ def run_rf_model_mlflow(df):
     # running mlflow
     mlflow.sklearn.autolog()
     
-    with mlflow.start_run(run_name="rf-default-model", experiment_id = experiment.experiment_id) as run:
+    with mlflow.start_run(run_name="rf-model", experiment_id = experiment.experiment_id) as run:
 
         # training model with hyperparameter tuning
         model_rf = RandomForestClassifier()
