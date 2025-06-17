@@ -43,28 +43,6 @@ jobs:
             runs = client.search_runs(experiment_ids=['0'], order_by=['start_time DESC'], max_results=1); \
             run_id = runs[0].info.run_id; print(run_id)")
           echo "MLFLOW_RUN_ID=$LATEST_RUN_ID" >> $GITHUB_ENV
-      
-      - name: List Repository Contents After MLflow Run (DEBUG)
-        if: always()
-        run: |
-          echo "Listing all contents of the repository working directory after MLflow run:"
-          ls -R .
-          echo "--- End of repository listing ---"
-
-      - name: Verify mlruns directory exists (DEBUG)
-        if: always()
-        run: |
-          echo "Checking for mlruns directory in common locations:"
-          if [ -d "mlruns" ]; then
-            echo "SUCCESS: 'mlruns/' directory found at repository root."
-            ls -ld mlruns/
-          elif [ -d "MLProject/mlruns" ]; then
-            echo "SUCCESS: 'MLProject/mlruns/' directory found."
-            ls -ld MLProject/mlruns/
-          else
-            echo "ERROR: Neither 'mlruns/' nor 'MLProject/mlruns/' directory found after MLflow run. MLflow artifacts might not have been created or are in an unexpected location."
-            exit 1
-          fi
 
       - name: Set up Docker BuildX
         uses: docker/setup-buildx-action@v3
@@ -92,4 +70,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mlflow-run-artifacts-${{ env.MLFLOW_RUN_ID }}
-          path: mlruns/${{ env.MLFLOW_RUN_ID }}/artifacts
+          path: mlruns/0/${{ env.MLFLOW_RUN_ID }}/artifacts
